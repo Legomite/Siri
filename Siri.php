@@ -128,7 +128,7 @@ case "how's.the.weather.for.today":
 case "how's.the.weather.for.today?":
 $this->api->chat->broadcast("<Siri> It is sunny and partially cloudy today with 0");
 $this->api->chat->broadcast("percent chance of rain fall, but of course you");
-$this->api->chat->broadcast("allready know that.");
+$this->api->chat->broadcast("already know that.");
 break;
 case "search.up.minecraft":
 case "what.is.minecraft":
