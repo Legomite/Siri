@@ -52,7 +52,7 @@ public function init(){
 
 $this->api->console->register("siri", "Siri", array($this, "command"));
 console("§a[Siri] Siri loading...");
-console("§a[Siri] 1.4.0 DEMO DO NOT BLAME ME FOR BUGS CRAFTING AND DATA VALUES STILL HAVE DOTS,THE REST DON"T.);
+console("§a[Siri] §dThis plugin is created by §cLegomite.§dCheck if you have the latest version of this plugin as I will update it constantly!");
 }
 
 public function __destruct(){}
@@ -64,17 +64,10 @@ case "hello":
 case "hello!":
 case "greetings":
 case "greetings!":
-case "hola":
-case "hola!":
-case "saludos":
-case "saludos!":
-$this->api->chat->broadcast("<Siri> Hello master!");
-break;
 case "hi":
 case "hi!":
-case "¡Hola":
-$user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Siri says hi back.");
+$hello = array("<Siri> Greetings!","<Siri> Hello!", "<Siri> Hey!", "<Siri> Hello master!"); 
+$this->api->chat->broadcast($hello[array_rand($hello)]);
 break;
 case "kill everyone":
 case "kill everyone!":
@@ -86,18 +79,9 @@ case "kill us all":
 case "kill us all!":
 case "kill us all siri":
 case "kill us all siri!":
-case "matar a todos":
-case "matar a todos!":
-case "matar a todos":
-case "matar a todos!":
-case "matarnos siri":
-case "matarnos siri!":
-case "matar a todos":
-case "matar a todos!":
-case "matarnos a todos siri":
-case "matarnos a todos siri!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Okay, killing everybody.");
+$kill = array("<Siri> Okay killing everybody...","<Siri> Working on it!", "<Siri> Okay master!", "<Siri> Killing everyone..."); 
+$this->api->chat->broadcast($kill[array_rand($kill)]);
 $this -> api -> console -> run("kill @a");
 break;
 case "increase my brightness":
@@ -108,15 +92,16 @@ case "can you make it brighter!":
 case "make it bright":
 case "make bright!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Okay increasing brightness.");
-$this -> api -> console -> run("time set day");
-break;
+$brightincrease = array("<Siri> Setting brightness higher.","<Siri> Okay, do you like it now?", "<Siri> How's that master?", "<Siri> Increasing."); 
+$this->api->chat->broadcast($brightincrease[array_rand($brightincrease)]);
+$this -> api -> console -> run("time add 20000");
+ break;
 case "decrease my brightness":
 case "lower my brightness":
 case "make it darker":
 case "can you make it darker":
 case "can you make it darker?":
-case "can.you.make it darker!":
+case "can you make it darker!":
 case "make it dark":
 case "make dark!":
 $user = strtolower($args[0]);
@@ -143,7 +128,7 @@ case "how's the weather for today":
 case "how's the weather for today?":
 $this->api->chat->broadcast("<Siri> It is sunny and partially cloudy today with 0");
 $this->api->chat->broadcast("percent chance of rain fall, but of course you");
-$this->api->chat->broadcast("already know that.");
+$this->api->chat->broadcast("allready know that.");
 break;
 case "search up minecraft":
 case "what is minecraft":
@@ -235,7 +220,7 @@ case "switch to creative":
 case "switch to creativemode":
 $user = strtolower($args[0]);
 $username = $issuer->username;
-$this->api->chat->broadcast("<Siri> Okay, Switching to creative mode...");
+$this->api->chat->broadcast($creative[array_rand($creative)]);
 $this -> api -> console -> run("gamemode 1".$username);
 break;
 case "switch to survival mode":
@@ -377,6 +362,32 @@ case "do you like anybody?":
 $user = strtolower($args[0]);
 $this->api->chat->broadcast("<Siri> Now that's a good queston. Now where were we.");
 break;
+case "your stupid":
+case "i hate you":
+case "you are rubbish":
+case "you are a idiot":
+case "your a retard":
+case "your a heap of junk":
+case "your stupid!":
+case "i hate you!":
+case "you are rubbish!":
+case "you are a idiot!":
+case "your a retard!":
+case "your a heap of junk!":
+$user = strtolower($args[0]);
+$this->api->chat->broadcast("<Siri> That is a matter of opinion.");
+break;
+case "im sorry siri":
+case "sorry":
+case "im sorry":
+case "sorry mate":
+case "please forgive me":
+case "im very sorry":
+case "forgive me":
+case "forgive me siri":
+$user = strtolower($args[0]);
+$this->api->chat->broadcast("<Siri> That's all right.");
+break;
 case "what is the lyrics for the fox":
 case "what is the lyrics for the fox?":
 case "give me the lyrics for the fox":
@@ -465,6 +476,15 @@ $this->api->chat->broadcast("what did the fox say?, what is the lyrics for the f
 $this->api->chat->broadcast("search up minecraft, increase my brightness and several");
 $this->api->chat->broadcast("more.");
 break;
+case "what number am i thinking":
+case "what number am i thinking?":
+case "what number am i thinking of":
+case "what number am i thinking of?":
+case "what type of number am i thinking of":
+case "what type of number am i thinking of!":
+$number = array("<Siri> 5?","<Siri> 7?", "<Siri> Oh I don't know", "<Siri> 80?", "<Siri> 42?"); 
+$this->api->chat->broadcast($number[array_rand($number)]);
+break;
 /*DATA VALUES AND CRAFTING*/
 case "what is the value for air":
 case "what is the data value for air":
@@ -506,22 +526,22 @@ $user = strtolower($args[0]);
 $this->api->chat->broadcast("<Siri> .Stone. Can be obtained from smelting cobblestone. Block not craftible.");
 $this->api->chat->broadcast("<Siri> data value is 1");
 break;
-case "what.is.the.value.for.grass":
-case "what.is.the.data.value.for.grass":
-case "what.is.the.datavalue.for.grass":
-case "what.is.the.value.for.grass?":
-case "what.is.the.data.value.for.grass?":
-case "what.is.the.datavalue.for.grass?":
-case "how.do.i.craft.grass":
-case "how.do.i.craft.grass?":
-case "how.do.you.craft.grass":
-case "how.do.you.craft.grass?":
-case "what.is.datavalue.2":
-case "what.is.datavalue.2?":
-case "what.is.data.value.2":
-case "what.is.data.value.2?":
-case "give.me.info.on.grass":
-case "give.me.information.on.grass":
+case "what is the value for grass":
+case "what is the data value for grass":
+case "what is the datavalue for grass":
+case "what is the value for grass?":
+case "what is the data value for grass?":
+case "what is the datavalue for grass?":
+case "how do i craft grass":
+case "how do i craft grass?":
+case "how do you craft grass":
+case "how do you craft grass?":
+case "what is datavalue 2":
+case "what is datavalue 2?":
+case "what is data value 2":
+case "what is data value 2?":
+case "give me info on grass":
+case "give me information on grass":
 $user = strtolower($args[0]);
 $this->api->chat->broadcast("<Siri> .Grass. This item cannot be crafted.");
 $this->api->chat->broadcast("<Siri> data value is 2");
