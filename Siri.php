@@ -5,11 +5,25 @@ name=Siri - A informational chat bot that you can talk to and run commands
 version=1.4.0
 author=Legomite
 class=Siri
-apiversion=8,9,10
+apiversion=8,9,10,11
 */
 
 /*
 ___changelog___
+1.4.0
+Get ready for the biggest update yet! with over 14+ brand new features!
+* Added 20 new responses!
+* Can ask Siri for The Fox Lyrics!
+* Can talk to Siri with no periods!
+* Can ask the location your at. Y X Z!
+* Ask Siri for Data values and crafting requirements 0-3 NOT FULLY EMPLEMENTED.
+* Chat recognition improved!
+* Msg now Sends to User Privately.
+* Siri now has a greater personality! (randomized text response)
+* Added support for api 11!
+* Fixes
+* Updated the loading message
+* You can now mute the chat and unmute the Chat.
 1.3.0
 * Removed nearly all the public functions as they are not needed
 * Vastly made the commands more flexible and added more chat recognition
@@ -66,8 +80,10 @@ case "greetings":
 case "greetings!":
 case "hi":
 case "hi!":
+case "hiya":
+case "hiya!":
 $hello = array("<Siri> Greetings!","<Siri> Hello!", "<Siri> Hey!", "<Siri> Hello master!"); 
-$this->api->chat->broadcast($hello[array_rand($hello)]);
+$issuer->sendChat($hello[array_rand($hello)]);
 break;
 case "kill everyone":
 case "kill everyone!":
@@ -79,9 +95,11 @@ case "kill us all":
 case "kill us all!":
 case "kill us all siri":
 case "kill us all siri!":
+case "murder us siri":
+case "murder us siri!":
 $user = strtolower($args[0]);
 $kill = array("<Siri> Okay killing everybody...","<Siri> Working on it!", "<Siri> Okay master!", "<Siri> Killing everyone..."); 
-$this->api->chat->broadcast($kill[array_rand($kill)]);
+$issuer->sendChat($kill[array_rand($kill)]);
 $this -> api -> console -> run("kill @a");
 break;
 case "increase my brightness":
@@ -93,7 +111,7 @@ case "make it bright":
 case "make bright!":
 $user = strtolower($args[0]);
 $brightincrease = array("<Siri> Setting brightness higher.","<Siri> Okay, do you like it now?", "<Siri> How's that master?", "<Siri> Increasing."); 
-$this->api->chat->broadcast($brightincrease[array_rand($brightincrease)]);
+$issuer->sendChat($brightincrease[array_rand($brightincrease)]);
 $this -> api -> console -> run("time add 20000");
  break;
 case "decrease my brightness":
@@ -104,8 +122,9 @@ case "can you make it darker?":
 case "can you make it darker!":
 case "make it dark":
 case "make dark!":
+$brightdecrease = array("<Siri> Setting brightness lower.","<Siri> Okay, do you like it now?", "<Siri> How's that master?", "<Siri> Decreasing."); 
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Okay decreasing brightness.");
+$issuer->sendChat($brightdecrease[array_rand($brightdecrease)]);
 $this -> api -> console -> run("time set night");
 break;
 case "what is the weather":
@@ -126,9 +145,8 @@ case "how's the weather":
 case "how's the weather?":
 case "how's the weather for today":
 case "how's the weather for today?":
-$this->api->chat->broadcast("<Siri> It is sunny and partially cloudy today with 0");
-$this->api->chat->broadcast("percent chance of rain fall, but of course you");
-$this->api->chat->broadcast("allready know that.");
+$weather = array("<Siri> It is sunny today and partially cloudy.","<Siri> Today has 0 percent of rainfall", "<Siri> It is partailly cloudy"); 
+$issuer->sendChat($weather[array_rand($weather)]);
 break;
 case "search up minecraft":
 case "what is minecraft":
@@ -136,12 +154,13 @@ case "what is minecraft?":
 case "what's minecraft":
 case "what's minecraft?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Okay, here's what I got.");
-$this->api->chat->broadcast("< Minecraft was made back in 2009");
-$this->api->chat->broadcast("< Minecraft was founded my Notch");
-$this->api->chat->broadcast("< Notch gave the lead development");
-$this->api->chat->broadcast("of Minecraft to Jeb");
-$this->api->chat->broadcast("< for more info go to http://minecraft.gamepedia.com/");
+$minecraft = array("<Siri> Okay,here's what I got.","<Siri> How's this?", "<Siri> Here you go."); 
+$issuer->sendChat($minecraft[array_rand($minecraft)]);
+$issuer->sendChat("Minecraft was made back in 2009");
+$issuer->sendChat("Minecraft was founded my Notch");
+$issuer->sendChat("Notch gave the lead development");
+$issuer->sendChat("of Minecraft to Jeb");
+$issuer->sendChat("for more info go to http://minecraft.gamepedia.com/");
 break;
 case "i love you":
 case "i love you!":
@@ -149,7 +168,8 @@ case "love you":
 case "love you!":
 case "you are the wings above my wind":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> You are the wind beneath my wings.");
+$love = array("<Siri> You are the wind beneath my wings.","<Siri> This won't work."); 
+$issuer->sendChat($love[array_rand($love)]);
 break;
 case "kill me":
 case "i feel like killing myself":
@@ -159,7 +179,8 @@ case "im going to rob a bank":
 case "im going to cheat":
 case "im taking drugs":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> I don't think that's a good idea.");
+$bad = array("<Siri> I don't think that's a good idea","<Siri> Uh oh.", "<Siri> I am highly against that."); 
+$issuer->sendChat($bad[array_rand($bad)]);
 break;
 case "how old is president obama":
 case "how old is president obama?":
@@ -170,7 +191,8 @@ case "how old is our president?":
 case "when was president obama born":
 case "when was president obama born?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> He is 52 years old,born august 4, 1961.");
+$obama = array("<Siri> He is 52 years old,born in august 4,1961.","<Siri> President Obama is 52 years old. And is born in 1961", "<Siri> 52 years old. 1961"); 
+$issuer->sendChat($obama[array_rand($obama)]);
 break;
 case "what is in the next mcpe update":
 case "what is in the next mcpe update?":
@@ -179,14 +201,8 @@ case "whats in the next mcpe update?":
 case "what's in the next mcpe update":
 case "what's in the next mcpeupdate?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> It is going to be 8.0 They are adding");
-$this->api->chat->broadcast("carpets,pumpkins,Birch and spruce planks,");
-$this->api->chat->broadcast("slabs,and stairs,rails,powered rails,cobblestone");
-$this->api->chat->broadcast("walls,mossy walls,iron bars,sponges,jungle wood");
-$this->api->chat->broadcast("Carrots,potatoes,minecarts,pumkin seeds,pumkin pie,");
-$this->api->chat->broadcast("far render distance and more. But I cannot");
-$this->api->chat->broadcast("fit it on this small chat. For more info visit");
-$this->api->chat->broadcast("http://minecraft.gamepedia.com/Pocket_Edition_upcoming_features");
+$issuer->sendChat("<Siri> My sources says it will be 9.0");
+$issuer->sendChat("more on minecraft.gamepedia.com/Pocket_Edition_upcoming_features");
 break;
 case "do you like cake":
 case "do you like cake?":
@@ -198,46 +214,52 @@ case "want cake?":
 case "want some cake":
 case "want some cake?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Yes,but only the square type.");
+$cake = array("<Siri> Now that's a good queston.","<Siri> Yes.", "<Siri> I am pretty sure you know by now."); 
+$issuer->sendChat($cake[array_rand($cake)]);
 break;
 case "do you like":
 case "do you like singers":
 case "do you like singers?":
-case "do you like bruno.mars":
-case "do you like bruno.mars?":
+case "do you like bruno mars":
+case "do you like bruno mars?":
 case "do you like brunomars":
 case "do you like brunomars?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> No,maybe,or yes.");
+$like = array("<Siri> Now that's a good queston.","<Siri> Maybe,now where were we?"); 
+$issuer->sendChat($like[array_rand($like)]);
 break;
 case "you are very":
 case "you are":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Why?");
+$very = array("<Siri> Why?","<Siri> Let's get back to work."); 
+$issuer->sendChat($very[array_rand($very)]);
 break;
 case "switch to creative mode":
 case "switch to creative":
 case "switch to creativemode":
 $user = strtolower($args[0]);
 $username = $issuer->username;
-$this->api->chat->broadcast($creative[array_rand($creative)]);
-$this -> api -> console -> run("gamemode 1".$username);
+$creative = array("<Siri> Switching to Creative.","<Siri> Working on it."); 
+$issuer->sendChat($creative[array_rand($creative)]);
+$this->api->console->run("gamemode 1 " .$username);
 break;
 case "switch to survival mode":
 case "switch to survival":
 case "switch to survivalmode":
 $user = strtolower($args[0]);
 $username = $issuer->username;
-$this->api->chat->broadcast("<Siri> Okay, Switching to Survival mode...");
-$this -> api -> console -> run("gamemode 0".$username);
+$survival = array("<Siri> Switching to Survival.","<Siri> Working on it.");
+$issuer->sendChat($survival[array_rand($survival)]);
+$this->api->console->run("gamemode 0" .$username);
 break;
 case "switch to adventure mode":
 case "switch to adventure":
 case "switch to adventuremode":
-$username = $issuer->username;
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Okay, Switching to Adventure mode...");
-$this -> api -> console -> run("gamemode 2".$username);
+$username = $issuer->username;
+$adventure = array("<Siri> Switching to Survival.","<Siri> Working on it.");
+$issuer->sendChat($adventure[array_rand($adventure)]);
+$this->api->console->run("gamemode 2" .$username);
 break;
 case "any good news":
 case "any good news?":
@@ -245,9 +267,7 @@ case "do you have some good news":
 case "do you have some good news?":
 case "good news?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Yes,pocket edition is getting a load");
-$this->api->chat->broadcast("of blocks, item's and tweaks.");
-$this->api->chat->broadcast("One of the biggest updates in mcpe.");
+$issuer->sendChat("<Siri> Yes,pocket edition got 16 million downloads!");
 break;
 case "sing for me":
 case "sing to me":
@@ -256,7 +276,8 @@ case "sing!":
 case "sing me a song":
 case "play me a song":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> You know I can't sing.");
+$songer = array("<Siri> You know I can't do that.","<Siri> La La La!");
+$issuer->sendChat($songer[array_rand($songer)]);
 break;
 case "i am master":
 case "call me master":
@@ -269,8 +290,8 @@ case "my name is master!":
 case "nickname me master!":
 case "for now on you will now call me master!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Your wish is my command, O Great and");
-$this->api->chat->broadcast("Benevolent Master.");
+$issuer->sendChat("<Siri> Your wish is my command, O Great and");
+$issuer->sendChat("Benevolent Master.");
 break;
 case "ha ha":
 case "ha ha ha":
@@ -278,7 +299,8 @@ case "hee hee":
 case "tee hee":
 case "your funny":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> You think im funny?");
+$funny = array("<Siri> You think im funny?","<Siri> LOL");
+$issuer->sendChat($funny[array_rand($funny)]);
 break;
 case "I need to go to the bathroom":
 case "i need to go to the bathroom to do a number two":
@@ -290,8 +312,8 @@ case "i need to go to the toilet":
 case "i need to eject some dung":
 case "i need to eject some dung!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> We are not that close. Please keep your");
-$this->api->chat->broadcast("dung to yourself.");
+$dung = array("<Siri> We are not that close. Please keep your dung to yourself.","<Siri> Let's move the conversation.");
+$issuer->sendChat($dung[array_rand($dung)]);
 break;
 case "what did the fox say":
 case "what did the fox say?":
@@ -308,7 +330,8 @@ case "what did the duck say?":
 case "what did the dude say":
 case "what did the dude say?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> I don't know. What did he say?");
+$whatthe = array("<Siri> I don't know. What did he say?","<Siri> Im sorry I don't understand what it says.");
+$issuer->sendChat($whatthe[array_rand($whatthe)]);
 break;
 case "bye":
 case "bye bye":
@@ -319,39 +342,45 @@ case "bye bye!":
 case "see you later!":
 case "see ya later!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Nice talking with you.");
+$bye = array("<Siri> Nice talking with you.","<Siri> Until next time...","OK,see you soon.");
+$issuer->sendChat($bye[array_rand($bye)]);
 break;
 case "morning":
 case "good morning":
 case "morning!":
 case "good morning!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Good morning!");
+$gmorning = array("<Siri> Good morning!","<Siri> Morning!","You too.");
+$issuer->sendChat($gmorning[array_rand($gmorning)]);
 break;
 case "night":
 case "good night":
 case "night!":
 case "good night!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Good night to you too!");
+$gnight = array("<Siri> Good Night!","<Siri> Night!","You too.");
+$issuer->sendChat($gnight[array_rand($gnight)]);
 break;
 case "are you nice":
 case "are you nice?":
 case "are you smart":
 case "are you smart?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Yes.");
+$goodygood = array("<Siri> How is this information important to you?","<Siri> Why?","What?");
+$issuer->sendChat($goodygood[array_rand($goodygood)]);
 break;
 case "are you always right":
 case "are you always right?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> No in fact.");
+$righty = array("<Siri> I may be a computer,but I am coded by a 12 year old.","<Siri> No.","What?");
+$issuer->sendChat($righty[array_rand($righty)]);
 break;
 case "you win siri":
 case "okay you win siri":
 case "fine you win":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> I rest my case.");
+$win = array("<Siri> I rest my case.","<Siri> Exactly how did I win?","I do not understand.");
+$issuer->sendChat($win[array_rand($win)]);
 break;
 case "do you feel impathy for people":
 case "do you feel impathy for people?":
@@ -360,7 +389,8 @@ case "do you feel emotional to people?":
 case "do you like anybody":
 case "do you like anybody?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> Now that's a good queston. Now where were we.");
+$emotional = array("<Siri> No comment.","<Siri> Now that's a good queston. Where were we?");
+$issuer->sendChat($emotional[array_rand($emotional)]);
 break;
 case "your stupid":
 case "i hate you":
@@ -375,7 +405,7 @@ case "you are a idiot!":
 case "your a retard!":
 case "your a heap of junk!":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> That is a matter of opinion.");
+$stupid = array("<Siri> That is a matter of opinion.","<Siri> Let it all out.");$issuer->sendChat($stupid[array_rand($stupid)]);
 break;
 case "im sorry siri":
 case "sorry":
@@ -386,7 +416,8 @@ case "im very sorry":
 case "forgive me":
 case "forgive me siri":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> That's all right.");
+$sorry = array("<Siri> That's okay.","<Siri> For what?");
+$issuer->sendChat($sorry[array_rand($sorry)]);
 break;
 case "what is the lyrics for the fox":
 case "what is the lyrics for the fox?":
@@ -395,39 +426,40 @@ case "give me the lyrics for the fox?":
 case "okay siri what is the lyrics for the fox":
 case "okay siri what is the lyrics for the fox?":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> okay, foxy.");
-$this->api->chat->broadcast("<Siri> Showing page 1 of 2 Usage:/siri the fox pg.2");
-$this->api->chat->broadcast("Ducks say quack and fish go blub and the seal goes ");
-$this->api->chat->broadcast("ow ow ow ow ow But theres one sound ");
-$this->api->chat->broadcast("That no one knows What does the fox say? ");
-$this->api->chat->broadcast("Ring-ding-ding-ding-dingeringeding! ");
-$this->api->chat->broadcast("<2x Gering-ding-ding-ding-dingeringeding! >");
-$this->api->chat->broadcast("What the fox say?<3x Wa-pa-pa-pa-pa-pa-pow! >");
-$this->api->chat->broadcast("What the fox say?<3x Hatee-hatee-hatee-ho! >");
-$this->api->chat->broadcast("What the fox say?<3x Joff-tchoff-tchoffo-tchoffo-tchoff!>");
-$this->api->chat->broadcast("What the fox say? Big blue eyes Pointy nose ");
-$this->api->chat->broadcast("Chasing mice and digging holes Tiny paws Up the hill ");
-$this->api->chat->broadcast("Suddenly youre standing still Your fur is red ");
-$this->api->chat->broadcast("So beautiful Like an angel in disguise ");
+$issuer->sendChat("<Siri> okay, foxy.");
+$issuer->sendChat("<Siri> Showing page 1 of 2 Usage:/siri the fox pg.2");
+$issuer->sendChat("Ducks say quack and fish go blub and the seal goes");
+$issuer->sendChat("ow ow ow ow ow But there's one sound That no one");
+$issuer->sendChat("knows What does the fox say?");
+$issuer->sendChat("Ring-ding-ding-ding-dingeringeding!");
+$issuer->sendChat("<2x Gering-ding-ding-ding-dingeringeding!>");
+$issuer->sendChat("What the fox say?<3x Wa-pa-pa-pa-pa-pa-pow!>");
+$issuer->sendChat("What the fox say?<3x Hatee-hatee-hatee-ho!>");
+$issuer->sendChat("What the fox say?");
+$issuer->sendChat("<3x Joff-tchoff-tchoffo-tchoffo-tchoff!>What the fox say?");
+$issuer->sendChat(" Big blue eyes Pointy nose Chasing mice and digging");
+$issuer->sendChat("holes Tiny paws Up the hill Suddenly youre");
+$issuer->sendChat("standing still Your fur is red So beautiful Like an");
+$issuer->sendChat("angel in disguise");
 break;
 case "the fox pg.2":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("But if you meet a friendly horse Will you  ");
-$this->api->chat->broadcast("communicate by <3x mo-o-o-o-orse?> How will  ");
-$this->api->chat->broadcast("you speak to that <3x ho-o-o-o-orse?> What  ");
-$this->api->chat->broadcast("does the fox say?  <3x Jacha-chacha-chacha-chow!>");
-$this->api->chat->broadcast("What the fox say?  <3x Fraka-kaka-kaka-kaka-kow! >");
-$this->api->chat->broadcast("What the fox say? <3x A-hee-ahee ha-hee! >What  ");
-$this->api->chat->broadcast("the fox say? A-oo-oo-oo-ooo! Woo-oo-oo-ooo! What  ");
-$this->api->chat->broadcast("does the fox say? The secret of the fox Ancient  ");
-$this->api->chat->broadcast("mystery Somewhere deep in the woods I know youre   ");
-$this->api->chat->broadcast("hiding What is your sound?Will we ever know? Will  ");
-$this->api->chat->broadcast("always be a mystery What do you say? Youre my   ");
-$this->api->chat->broadcast("guardian angel Hiding in the woodsWhat is your   ");
-$this->api->chat->broadcast("sound? Wa-wa-way-do Wub-wid-bid-dum-way-do Wa-wa-way-do ");
-$this->api->chat->broadcast("Will we ever know?  Bay-budabud-dum-bam I want to ");
-$this->api->chat->broadcast("Mama-dum-day-do  I want to I want to know! ");
-$this->api->chat->broadcast("Abay-ba-da bum-bum bay-do...");
+$issuer->sendChat("But if you meet a friendly horse Will you");
+$issuer->sendChat("communicate by <3x mo-o-o-o-orse?> How will");
+$issuer->sendChat("you speak to that <3x ho-o-o-o-orse?> What");
+$issuer->sendChat("does the fox say?  <3x Jacha-chacha-chacha-chow!>");
+$issuer->sendChat("What the fox say?  <3x Fraka-kaka-kaka-kaka-kow!>");
+$issuer->sendChat("What the fox say? <3x A-hee-ahee ha-hee! >What");
+$issuer->sendChat("the fox say? A-oo-oo-oo-ooo! Woo-oo-oo-ooo! What");
+$issuer->sendChat("does the fox say? The secret of the fox Ancient");
+$issuer->sendChat("mystery Somewhere deep in the woods I know youre");
+$issuer->sendChat("hiding What is your sound?Will we ever know? Will");
+$issuer->sendChat("always be a mystery What do you say? Youre my");
+$issuer->sendChat("guardian angel Hiding in the woodsWhat is your");
+$issuer->sendChat("sound? Wa-wa-way-do Wub-wid-bid-dum-way-do ");
+$issuer->sendChat("Wa-wa-way-do Will we ever know?  Bay-budabud-dum-bam ");
+$issuer->sendChat("I want to Mama-dum-day-do  I want to I want to know! ");
+$issuer->sendChat("Abay-ba-da bum-bum bay-do...");
 break;
 case "mute the chat siri":
 case "can you mute the chat":
@@ -436,7 +468,7 @@ case "mute the chat":
 case "mute the chat siri":
 case "can you please mute the chat":
 case "can you please mute the chat?":
-$issuer->disableChat = false;
+$issuer->disableChat = true;
 $issuer->sendChat("<Siri> Okay you won't be seeing any messages. ", "", true);
 break;
 case "unmute the chat siri":
@@ -446,8 +478,8 @@ case "unmute the chat":
 case "unmute the chat siri":
 case "can you please unmute the chat":
 case "can you please unmute the chat?":
-$issuer->disableChat = true;
-$issuer->sendChat("<Siri> Okay you will now start to recieve messages again. ");
+$issuer->disableChat = false;
+$issuer->sendChat("<Siri> Okay you will now start to recieve messages again.");
 break;
 case "where am i":
 case "where am i?":
@@ -462,7 +494,8 @@ $y=round($rawy,2);
 $rawz =ceil($player->entity->z);
 $z=round($rawz,2);
 $level =$player->entity->level->getName();
-$output ="<Siri> You are at X: $x Y: $y Z: $z" ;
+$coords = array("<Siri> You are at X: $x Y: $y Z: $z","<Siri> Your at X: $x Y: $y Z: $z","<Siri> Your current area is X: $x Y: $y Z: $z");
+$issuer->sendChat($coords[array_rand(coords)]);
 return $output;
 break;
 case "help":
@@ -470,11 +503,11 @@ case "what can i say to you":
 case "what can i say to you?":
 case "i dont know how this works":
 case "i don't know how this works":
-$this->api->chat->broadcast("<Siri> Things you can say to me.");
-$this->api->chat->broadcast("coords, mute the chat,the fox pg.2, give me info on grass,");
-$this->api->chat->broadcast("what did the fox say?, what is the lyrics for the fox,");
-$this->api->chat->broadcast("search up minecraft, increase my brightness and several");
-$this->api->chat->broadcast("more.");
+$issuer->sendChat("<Siri> Things you can say to me.");
+$issuer->sendChat("coords, mute the chat,the fox pg.2, give me info on grass,");
+$issuer->sendChat("what did the fox say?, what is the lyrics for the fox,");
+$issuer->sendChat("search up minecraft, increase my brightness and several");
+$issuer->sendChat("more.");
 break;
 case "what number am i thinking":
 case "what number am i thinking?":
@@ -482,10 +515,10 @@ case "what number am i thinking of":
 case "what number am i thinking of?":
 case "what type of number am i thinking of":
 case "what type of number am i thinking of!":
-$number = array("<Siri> 5?","<Siri> 7?", "<Siri> Oh I don't know", "<Siri> 80?", "<Siri> 42?"); 
-$this->api->chat->broadcast($number[array_rand($number)]);
+$number = array("<Siri> 5?","<Siri> 7?", "<Siri> Oh I don't know", "<Siri> 80?", "<Siri> 42?", "<Siri> 1?", "<Siri> 2?", "<Siri> 3?"); 
+$issuer->sendChat($number[array_rand($number)]);
 break;
-/*DATA VALUES AND CRAFTING*/
+/*DATA VALUES AND CRAFTING UNDER DEVELOPMENT*/
 case "what is the value for air":
 case "what is the data value for air":
 case "what is the datavalue for air":
@@ -503,8 +536,8 @@ case "what is data value 0?":
 case "give me info on air":
 case "give me information on air":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> .Air. This item cannot be crafted.");
-$this->api->chat->broadcast("<Siri> data value is 0");
+$issuer->sendChat("<Siri> .Air. This item cannot be crafted.");
+$issuer->sendChat("<Siri> data value is 0");
 break;
 case "what is the value for stone":
 case "what is the data value for stone":
@@ -523,8 +556,8 @@ case "what is data value 1?":
 case "give me info on stone":
 case "give me information on stone":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> .Stone. Can be obtained from smelting cobblestone. Block not craftible.");
-$this->api->chat->broadcast("<Siri> data value is 1");
+$issuer->sendChat("<Siri> .Stone. Can be obtained from smelting cobblestone. Block not craftible.");
+$issuer->sendChat("<Siri> data value is 1");
 break;
 case "what is the value for grass":
 case "what is the data value for grass":
@@ -543,28 +576,28 @@ case "what is data value 2?":
 case "give me info on grass":
 case "give me information on grass":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> .Grass. This item cannot be crafted.");
-$this->api->chat->broadcast("<Siri> data value is 2");
+$issuer->sendChat("<Siri> .Grass. This item cannot be crafted.");
+$issuer->sendChat("<Siri> data value is 2");
 break;
-case "what.is.the.value.for.dirt":
-case "what.is.the.data.value.for.dirt":
-case "what.is.the.datavalue.for.dirt":
-case "what.is.the.value.for.dirt?":
-case "what.is.the.data.value.for.dirt?":
-case "what.is.the.datavalue.for.dirt?":
-case "how.do.i.craft.dirt":
-case "how.do.i.craft.dirt?":
-case "how.do.you.craft.dirt":
-case "how.do.you.craft.dirt?":
-case "what.is.datavalue.3":
-case "what.is.datavalue.3?":
-case "what.is.data.value.3":
-case "what.is.data.value.3?":
-case "give.me.info.on.dirt":
-case "give.me.information.on.dirt":
+case "what is the value for dirt":
+case "what is the data value for dirt":
+case "what is the datavalue for dirt":
+case "what is the value for dirt?":
+case "what is the data value for dirt?":
+case "what is the datavalue for dirt?":
+case "how do i craft dirt":
+case "how do i craft dirt?":
+case "how do you craft dirt":
+case "how do you craft dirt?":
+case "what is datavalue 3":
+case "what is datavalue 3?":
+case "what is data value 3":
+case "what is data value 3?":
+case "give me info on dirt":
+case "give me information on dirt":
 $user = strtolower($args[0]);
-$this->api->chat->broadcast("<Siri> .Dirt. This item cannot be crafted.");
-$this->api->chat->broadcast("<Siri> data value is 3");
+$issuer->sendChat("<Siri> .Dirt. This item cannot be crafted.");
+$issuer->sendChat("<Siri> data value is 3");
 break;
 case "what.is.the.value.for.cobblestone":
 case "what.is.the.data.value.for.cobblestone":
@@ -808,5 +841,4 @@ $this->api->chat->broadcast("<Siri> data value is 15");
 break;
 }
 }
-
 }
