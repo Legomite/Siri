@@ -2,6 +2,9 @@
 
 An informational chat bot that you can talk to, and run commands
 
+## How to use prototype BETA snapshot's
+Copy and paste written code into a PHP file. If you cannot open the PHP file open it with a text editiong software.
+Second method, Download PHP file from repostitory
 ## Installation
 - Self Explanatory, drop the plugin into PocketMine's `plugins/` folder.
 - Restart the server
@@ -46,3 +49,25 @@ An informational chat bot that you can talk to, and run commands
 - Some background changes and tweaks
 - GAMEMODE COMMAND PLANNED TO BE FIXED IN 1.3.1
 
+
+1.4.0
+ Get ready for the biggest update yet! with over 14+ brand new features!
+- Added 12 new responses!
+- Can ask Siri for The Fox Lyrics!
+- Can talk to Siri with no periods!
+- Can ask the location your at. Y X Z!
+- Ask Siri for Data values and crafting requirements 0-3 NOT FULLY EMPLEMENTED.
+- Chat recognition improved!
+- Msg now Sends to User Privately.
+- Siri now has a greater personality! (randomized text response)
+- Added support for api 11!
+- Fixes
+- Updated the loading message
+- You can now mute the chat and unmute the Chat.
+- Removed The installer.
+
+1.5.0 (1)
+- Rewritten code to use If statements instead of cases to make chat recognition better
+- Added API support for 12,13,14,15,16,17,18,19 and 20
+- 
+ 
