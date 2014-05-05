@@ -66,8 +66,8 @@ Second method, Download PHP file from repostitory
 - You can now mute the chat and unmute the Chat.
 - Removed The installer.
 
-1.5.0 (1)
+1.5.0 Upcoming List
 - Rewritten code to use If statements instead of cases to make chat recognition better
 - Added API support for 12,13,14,15,16,17,18,19 and 20
-- 
+
  
